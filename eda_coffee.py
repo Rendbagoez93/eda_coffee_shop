@@ -1,7 +1,4 @@
-"""eda_coffee.py
-Lightweight exploratory data analysis for data/Coffe_sales.csv.
-Generates summary tables and plots (saved to outputs/).
-"""
+
 from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
