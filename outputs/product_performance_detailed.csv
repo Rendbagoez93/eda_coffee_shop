@@ -1,0 +1,9 @@
+coffee_name,orders,total_revenue,avg_price,avg_hour,first_sale_hour,last_sale_hour,peak_day
+Latte,757,26875.3,35.5,14.63,7,22,Mon
+Americano with Milk,809,24751.12,30.59,13.62,6,22,Tue
+Cappuccino,486,17439.14,35.88,14.92,6,22,Thu
+Americano,564,14650.26,25.98,13.19,6,22,Fri
+Hot Chocolate,276,9933.46,35.99,16.32,8,22,Tue
+Cocoa,239,8521.16,35.65,15.26,7,22,Tue
+Cortado,287,7384.86,25.73,12.65,7,22,Sat
+Espresso,129,2690.28,20.85,13.6,7,22,Thu
