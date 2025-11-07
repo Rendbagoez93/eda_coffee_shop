@@ -119,3 +119,88 @@ try:
     
 except Exception as e:
     print(f"Error creating weekday plot: {e}")
+    
+print ("=" * 40)
+
+# Statiistical Analysis
+df[['money', 'hour_of_day']].describe()
+
+print("Skewness:\n", df[['money', 'hour_of_day']].skew())
+print("Kurtosis:\n", df[['money', 'hour_of_day']].kurt())
+
+# Distribution Plots
+plt.figure(figsize=(7,5))
+sns.histplot(df['money'], bins=30, kde=True)
+plt.title('Distribution of Transaction Amounts')
+plt.xlabel('Money Spent')
+plt.ylabel('Frequency')
+plt.show()
+
+# Boxplot for outliers
+sns.boxplot(x='money', data=df)
+plt.title('Outlier Detection in Transaction Amount')
+plt.show()
+
+# Correlation Analysis
+corr = df[['hour_of_day', 'money']].corr()
+print(corr)
+
+sns.heatmap(corr, annot=True, cmap='coolwarm')
+plt.title('Correlation Matrix')
+plt.show()
+
+corr_cols = ['money', 'hour_of_day', 'weekdaysort', 'monthsort']
+sns.heatmap(df[corr_cols].corr(), annot=True, cmap='vlag')
+plt.title('Correlation Across Time Dimensions')
+plt.show()
+
+# Group-Based Statistical Summaries
+print("Statistical Summary by Cash Type:")
+print(df.groupby('cash_type')['money'].describe())
+
+# Average by weekday
+print ("Statistical Summary by Weekday:")
+weekday_stats = df.groupby('weekday')['money'].agg(['mean','median','std','count'])
+print(weekday_stats)
+
+# Average by time of day
+print ("Statistical Summary by Time of Day:")
+timeofday_stats = df.groupby('time_of_day')['money'].agg(['mean','median','std','count'])
+print(timeofday_stats)
+
+
+# Product Performance
+coffee_stats = df.groupby('coffee_name')['money'].agg(['count','mean','sum']).sort_values('sum', ascending=False)
+print(coffee_stats.head(10))
+
+# Hourly & Daily Trends (Aggregated)
+hourly_sales = df.groupby('hour_of_day')['money'].sum().reset_index()
+sns.lineplot(x='hour_of_day', y='money', data=hourly_sales)
+plt.title('Total Revenue by Hour of Day')
+plt.show()
+
+# Daily revenue by weekday (use a fixed order and handle missing days)
+weekdays_order = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+
+# Ensure weekday column uses consistent ordering (safe coercion)
+try:
+    df['weekday'] = pd.Categorical(df['weekday'], categories=weekdays_order, ordered=True)
+except Exception:
+    # if conversion fails, continue — groupby + reindex below will still handle ordering
+    pass
+
+daily_sales = (
+    df.groupby('weekday', sort=False)['money']
+      .sum()
+      .reindex(weekdays_order)
+      .fillna(0)
+      .reset_index()
+      .rename(columns={'money': 'money'})
+)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x='weekday', y='money', data=daily_sales, order=weekdays_order)
+plt.title('Total Revenue by Weekday')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
