@@ -12,8 +12,8 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error
-from scipy import stats
 import warnings
+
 warnings.filterwarnings('ignore')
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
