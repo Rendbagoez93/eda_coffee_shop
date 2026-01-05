@@ -85,6 +85,11 @@ output/*.png
 output/*.html
 output/visualizations/
 outputs/
+outputs/*.png
+outputs/advanced/
+outputs/behavioral/
+outputs/Phase1/
+outputs/predictions/
 
 # UV lock file
 uv.lock
