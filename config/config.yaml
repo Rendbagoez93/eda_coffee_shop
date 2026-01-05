@@ -1,0 +1,200 @@
+# Coffee Sales Analysis - Main Configuration
+# Project: EDA Coffee Shop Transaction Analysis
+# Based on: ARD.md (Analysis Requirements Document)
+
+# Project Metadata
+project:
+  name: "Coffee Sales Analysis"
+  version: "1.0.0"
+  description: "Transaction-level analysis of coffee sales data for revenue optimization, operational efficiency, and product strategy"
+  author: "Data Analysis Team"
+  date_created: "2026-01-05"
+
+# Business Objectives (ARD Section 2)
+objectives:
+  revenue_optimization: true
+  operational_efficiency: true
+  product_marketing_strategy: true
+
+# Dataset Configuration (ARD Section 3)
+dataset:
+  name: "Coffee Sales Dataset"
+  source: "Kaggle Public Dataset by Minahil Fatima"
+  file_name: "Coffe_sales.csv"
+  
+  # Available Columns
+  columns:
+    transaction_fields:
+      - "hour_of_day"
+      - "cash_type"
+      - "money"
+      - "coffee_name"
+    
+    time_fields:
+      - "Time_of_Day"
+      - "Weekday"
+      - "Weekdaysort"
+      - "Month_name"
+      - "Monthsort"
+      - "Date"
+      - "Time"
+
+# Analysis Configuration (ARD Section 4)
+analysis:
+  # 4.1 Sales Performance Analysis
+  sales_performance:
+    enabled: true
+    metrics:
+      - "total_revenue"
+      - "transaction_count"
+      - "average_transaction_value"
+      - "revenue_by_product"
+      - "revenue_trends"
+    outputs:
+      - "daily_revenue"
+      - "product_performance_detailed"
+      - "price_by_coffee"
+  
+  # 4.2 Time-Based Demand Analysis
+  time_based_demand:
+    enabled: true
+    dimensions:
+      - "hour_of_day"
+      - "Time_of_Day"
+      - "Weekday"
+    visualizations:
+      - "hourly_heatmap"
+      - "peak_hours_chart"
+      - "weekday_comparison"
+    outputs:
+      - "hourly_counts"
+      - "hourly_detailed_analysis"
+      - "daily_detailed_analysis"
+  
+  # 4.3 Product Preference Analysis
+  product_preference:
+    enabled: true
+    dimensions:
+      - "coffee_name"
+      - "Time_of_Day"
+      - "Weekday"
+    metrics:
+      - "sales_volume"
+      - "revenue_contribution"
+    outputs:
+      - "coffee_counts"
+      - "product_performance_detailed"
+  
+  # 4.4 Payment Behavior Analysis
+  payment_behavior:
+    enabled: true
+    dimensions:
+      - "cash_type"
+      - "hour_of_day"
+      - "Weekday"
+    metrics:
+      - "payment_method_distribution"
+      - "average_spend_by_payment"
+    outputs:
+      - "payment_analysis"
+  
+  # 4.5 Seasonality & Calendar Analysis
+  seasonality:
+    enabled: true
+    dimensions:
+      - "Month_name"
+      - "Monthsort"
+      - "Date"
+    metrics:
+      - "monthly_revenue"
+      - "month_over_month_growth"
+    outputs:
+      - "daily_revenue"
+      - "seasonal_trends"
+
+# Advanced Analysis (ARD Section 5)
+advanced_analysis:
+  enabled: true
+  modules:
+    customer_journey:
+      enabled: true
+      output: "phase1_customer_journey.csv"
+    
+    customer_segmentation:
+      enabled: true
+      output: "phase1_customer_segments.csv"
+    
+    anomaly_detection:
+      enabled: true
+      output: "phase1_daily_anomalies.csv"
+      visualization: "phase1_anomaly_detection.png"
+    
+    forecasting:
+      enabled: true
+      output: "phase1_forecasting_results.csv"
+      visualization: "phase1_forecasting_analysis.png"
+
+# Visualization Settings
+visualization:
+  enabled: true
+  formats:
+    - "png"
+  dpi: 300
+  style: "seaborn-v0_8-darkgrid"
+  color_palette: "viridis"
+  figure_size:
+    default: [12, 6]
+    heatmap: [14, 8]
+    comprehensive: [20, 12]
+
+# Data Processing
+data_processing:
+  encoding: "utf-8"
+  date_format: "%Y-%m-%d"
+  time_format: "%H:%M:%S"
+  
+  # Missing Value Handling
+  missing_values:
+    strategy: "drop"  # Options: drop, fill, interpolate
+    fill_value: null
+  
+  # Data Validation
+  validation:
+    check_duplicates: true
+    check_nulls: true
+    check_data_types: true
+
+# Reporting
+reporting:
+  format: "markdown"
+  include_visualizations: true
+  include_summary_statistics: true
+  include_recommendations: true
+  
+  # KPIs (ARD Section 6)
+  kpis:
+    - "total_revenue"
+    - "peak_hours"
+    - "top_products"
+    - "payment_preferences"
+    - "seasonal_patterns"
+
+# Success Metrics (ARD Section 7)
+success_metrics:
+  - "Peak demand periods identified"
+  - "Product performance insights generated"
+  - "Actionable recommendations provided"
+  - "Decision-making clarity improved"
+
+# Assumptions & Constraints (ARD Section 8)
+assumptions:
+  completed_transactions_only: true
+  no_customer_identifiers: true
+  no_external_factors: true  # weather, holidays not included
+
+# Execution Settings
+execution:
+  parallel_processing: false
+  verbose: true
+  save_intermediate_results: true
+  overwrite_outputs: true

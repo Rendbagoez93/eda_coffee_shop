@@ -1,0 +1,129 @@
+# Logging Configuration for Coffee Sales Analysis
+# Project: EDA Coffee Shop Transaction Analysis
+
+version: 1
+disable_existing_loggers: false
+
+# Formatters
+formatters:
+  standard:
+    format: '[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  detailed:
+    format: '[%(asctime)s] %(levelname)s [%(name)s:%(funcName)s:%(lineno)s] - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+  
+  simple:
+    format: '%(levelname)s - %(message)s'
+
+# Handlers
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: standard
+    stream: ext://sys.stdout
+  
+  file:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: outputs/coffee_analysis.log
+    mode: a
+    encoding: utf-8
+  
+  error_file:
+    class: logging.FileHandler
+    level: ERROR
+    formatter: detailed
+    filename: outputs/errors.log
+    mode: a
+    encoding: utf-8
+
+# Loggers for different modules
+loggers:
+  # Data processing logger
+  data:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+  
+  # Analysis modules logger
+  analysis:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+  
+  # Visualization logger
+  visualization:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+  
+  # Utils logger
+  utils:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+  
+  # Main execution logger
+  main:
+    level: INFO
+    handlers: [console, file, error_file]
+    propagate: false
+
+# Root logger
+root:
+  level: DEBUG
+  handlers: [console, file, error_file]
+
+# Module-specific settings
+modules:
+  # Sales Performance Analysis (ARD 4.1)
+  sales_performance:
+    log_level: INFO
+    log_metrics: true
+    log_timing: true
+  
+  # Time-Based Demand Analysis (ARD 4.2)
+  time_based_demand:
+    log_level: INFO
+    log_peak_hours: true
+    log_heatmap_generation: true
+  
+  # Product Preference Analysis (ARD 4.3)
+  product_preference:
+    log_level: INFO
+    log_product_rankings: true
+  
+  # Payment Behavior Analysis (ARD 4.4)
+  payment_behavior:
+    log_level: INFO
+    log_payment_stats: true
+  
+  # Seasonality Analysis (ARD 4.5)
+  seasonality:
+    log_level: INFO
+    log_seasonal_patterns: true
+  
+  # Advanced Analysis (ARD Section 5)
+  advanced_analysis:
+    log_level: DEBUG
+    log_model_performance: true
+    log_anomalies: true
+    log_forecasts: true
+
+# Performance logging
+performance:
+  enabled: true
+  log_execution_time: true
+  log_memory_usage: true
+  log_data_statistics: true
+
+# Error handling
+error_handling:
+  log_stack_trace: true
+  log_data_quality_issues: true
+  log_validation_failures: true
+  notify_on_critical: false

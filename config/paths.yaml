@@ -1,0 +1,89 @@
+# Paths Configuration for Coffee Sales Analysis Project
+# Based on ARD.md - Analysis Requirements Document
+
+# Project Root
+project_root: "c:/Users/Admin/project/Data Analysis/eda_coffee_shop"
+
+# Data Directories
+data:
+  root: "data"
+  raw: "data/raw"
+  enriched: "data/enriched"
+  
+# Raw Data Files
+raw_data:
+  coffee_sales: "data/raw/Coffe_sales.csv"
+
+# Output Directories
+output:
+  root: "output"
+  visualizations: "output/visualizations"
+  reports: "output/reports"
+  csv: "output/csv"
+
+# Output Files - Sales Performance Analysis (ARD Section 4.1)
+output_files:
+  revenue:
+    daily_revenue: "output/daily_revenue.csv"
+    product_performance: "output/product_performance_detailed.csv"
+    price_by_coffee: "output/price_by_coffee.csv"
+  
+  # Time-Based Demand Analysis (ARD Section 4.2)
+  time_analysis:
+    hourly_counts: "output/hourly_counts.csv"
+    hourly_detailed: "output/hourly_detailed_analysis.csv"
+    daily_detailed: "output/daily_detailed_analysis.csv"
+  
+  # Product Preference Analysis (ARD Section 4.3)
+  product:
+    coffee_counts: "output/coffee_counts.csv"
+    correlations: "output/numeric_correlations.csv"
+  
+  # Advanced Analysis (ARD Section 5)
+  advanced:
+    customer_journey: "output/phase1_customer_journey.csv"
+    customer_segments: "output/phase1_customer_segments.csv"
+    daily_anomalies: "output/phase1_daily_anomalies.csv"
+    forecasting_results: "output/phase1_forecasting_results.csv"
+
+# Visualization Files
+visualizations:
+  sales_by_hour: "output/sales_by_hour.png"
+  daily_revenue: "output/daily_revenue.png"
+  comprehensive_analysis: "output/comprehensive_analysis.png"
+  coffee_sales_analysis: "output/coffee_sales_analysis.png"
+  price_distribution: "output/price_distribution.png"
+  boxplot_top_8: "output/boxplot_top_8.png"
+  phase1_anomaly_detection: "output/phase1_anomaly_detection.png"
+  phase1_customer_segmentation: "output/phase1_customer_segmentation.png"
+  phase1_forecasting_analysis: "output/phase1_forecasting_analysis.png"
+
+# Source Code Directories
+src:
+  root: "src"
+  analysis: "src/analysis"
+  data: "src/data"
+  utils: "src/utils"
+
+# Notebooks
+notebooks:
+  root: "notebooks"
+  eda_notebook: "notebooks/eda-analysis-on-daily-coffee-transaction.ipynb"
+
+# Configuration Files
+config:
+  root: "config"
+  main: "config/config.yaml"
+  paths: "config/paths.yaml"
+  logging: "config/logging.yaml"
+
+# Documentation
+docs:
+  ard: "ARD.md"
+  readme: "README.md"
+
+# Project Files
+project_files:
+  main: "main.py"
+  requirements: "requirements.txt"
+  pyproject: "pyproject.toml"

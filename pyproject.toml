@@ -1,7 +1,7 @@
 [project]
-name = "coba"
-version = "0.1.0"
-description = "Add your description here"
+name = "coffee-sales-analysis"
+version = "1.0.0"
+description = "Coffee Sales Analysis - EDA and Business Intelligence"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -9,7 +9,10 @@ dependencies = [
     "kagglehub>=0.3.13",
     "matplotlib>=3.10.6",
     "pandas>=2.3.3",
+    "pyyaml>=6.0.3",
     "scikit-learn>=1.7.2",
     "scipy>=1.16.3",
     "seaborn>=0.13.2",
+    "plotly>=5.18.0",
+    "kaleido>=0.2.1",
 ]
